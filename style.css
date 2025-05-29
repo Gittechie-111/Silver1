@@ -90,7 +90,7 @@ nav a:focus {
 
 .gallery-item:hover,
 .gallery-item:focus {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1) rotate(2deg);
   box-shadow: 0 15px 30px rgba(0,0,0,0.3);
   outline: none;
 }
@@ -120,7 +120,7 @@ nav a:focus {
 .booking-section:focus-within,
 .food-section:hover,
 .food-section:focus-within {
-  background-color: #1abc9c;
+  background-color: #636867;
   color: white;
   box-shadow: 0 12px 30px rgba(26, 188, 156, 0.7);
   transform: translateY(-8px);
@@ -187,7 +187,7 @@ select[multiple] {
 button {
   width: 100%;
   padding: 12px;
-  background: #1abc9c;
+  background: #48c2a9;
   border: none;
   border-radius: 8px;
   color: white;
@@ -208,7 +208,7 @@ button:focus {
 /* Validation feedback (optional) */
 input:invalid,
 select:invalid {
-  border-color: #e74c3c;
+  border-color: #8b8989;
 }
 
 input:invalid:focus,
@@ -221,7 +221,7 @@ select:invalid:focus {
   text-align: center;
   margin-top: 15px;
   font-weight: 600;
-  color: #27ae60;
+  color: #afddc2;
 }
 
 /* Food Gallery */

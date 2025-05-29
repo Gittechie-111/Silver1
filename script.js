@@ -15,7 +15,13 @@ document.getElementById('booking-form').addEventListener('submit', function(e) {
     return;
   }
 
-  showMessage('booking-message', '✅ Thank you, ${formData.name}! Your ${formData.roomType} room is booked from ${formData.checkin} to ${formData.checkout}.');
+  const checkinDate = new Date(formData.checkin);
+  const checkoutDate = new Date(formData.checkout);
+
+  const formattedCheckin = checkinDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  const formattedCheckout = checkoutDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+
+  showMessage('booking-message', `✅ Thank you, ${formData.name}! Your ${formData.roomType} room is booked from ${formattedCheckin} to ${formattedCheckout}.`);
   this.reset();
 });
 
@@ -25,7 +31,7 @@ document.getElementById('food-form').addEventListener('submit', function(e) {
 
   const formData = {
     name: this.name.value.trim(),
-    roomNumber: this.roomNumber.value,
+    roomNumber: this.roomNumber.value.trim(),
     foodItems: Array.from(this.foodItems.selectedOptions).map(opt => opt.text)
   };
 
@@ -34,7 +40,12 @@ document.getElementById('food-form').addEventListener('submit', function(e) {
     return;
   }
 
-  showMessage('food-message', '✅ Thank you, ${formData.name}! Order for room ${formData.roomNumber} confirmed: ${formData.foodItems.join(', ')}.');
+  if (!formData.roomNumber) {
+    showMessage('food-message', '❌ Please enter a valid room number.', true);
+    return;
+  }
+
+  showMessage('food-message', `✅ Thank you, ${formData.name}! Order for room ${formData.roomNumber} confirmed: ${formData.foodItems.join(', ')}.`);
   this.reset();
 });
 
