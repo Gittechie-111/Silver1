@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hotel Website</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1 class="fade-in">Welcome to DreamStay Hotel</h1>
+    <nav>
+      <a href="#gallery">Gallery</a>
+      <a href="#booking">Book a Room</a>
+      <a href="#food">Order Food</a>
+      <a href="#food-gallery">Food Gallery</a>
+    </nav>
+  </header>
+
+  <!-- Hotel Gallery -->
+  <section id="gallery" class="gallery-section fade-in">
+    <h2>Hotel Gallery</h2>
+    <div class="gallery">
+      <div class="gallery-item" style="background-image: url('https://picsum.photos/id/1018/400/300')"></div>
+      <div class="gallery-item" style="background-image: url('https://picsum.photos/id/1015/400/300')"></div>
+      <div class="gallery-item" style="background-image: url('https://picsum.photos/id/1019/400/300')"></div>
+      <div class="gallery-item" style="background-image: url('https://picsum.photos/id/1020/400/300')"></div>
+    </div>
+  </section>
+
+  <!-- Booking and Food Order Side by Side -->
+  <div class="booking-food-container">
+    <section id="booking" class="booking-section fade-in">
+      <h2>Room Reservation</h2>
+      <form id="booking-form">
+        <label>
+          Name:
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Check-in Date:
+          <input type="date" name="checkin" required />
+        </label>
+        <label>
+          Check-out Date:
+          <input type="date" name="checkout" required />
+        </label>
+        <label>
+          Room Type:
+          <select name="roomType" required>
+            <option value="">Select</option>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="suite">Suite</option>
+          </select>
+        </label>
+        <button type="submit">Book Now</button>
+      </form>
+      <div id="booking-message" class="message"></div>
+    </section>
+
+    <section id="food" class="food-section fade-in">
+      <h2>Food Order</h2>
+      <form id="food-form">
+        <label>
+          Name:
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Room Number:
+          <input type="number" name="roomNumber" min="1" required />
+        </label>
+        <label>
+          Select Food Items:
+          <select name="foodItems" multiple required>
+            <option value="burger">Burger</option>
+            <option value="pizza">Pizza</option>
+            <option value="salad">Salad</option>
+            <option value="pasta">Pasta</option>
+            <option value="dessert">Dessert</option>
+          </select>
+        </label>
+        <button type="submit">Order Food</button>
+      </form>
+      <div id="food-message" class="message"></div>
+    </section>
+  </div>
+
+  <!-- Food Gallery -->
+  <section id="food-gallery" class="food-gallery-section fade-in">
+    <h2>Our Delicious Food</h2>
+    <div class="food-gallery">
+      <div class="food-item burger" style="background-image: url('https://picsum.photos/id/292/300/200')" data-title="Cheeseburger" data-desc="Juicy grilled burger with cheese">
+        <div class="food-info">
+          <h3>Cheeseburger</h3>
+          <p>Juicy grilled burger with cheese</p>
+        </div>
+      </div>
+      <div class="food-item pizza" style="background-image: url('https://picsum.photos/id/1080/300/200')" data-title="Margherita Pizza" data-desc="Classic pizza with fresh basil">
+        <div class="food-info">
+          <h3>Margherita Pizza</h3>
+          <p>Classic pizza with fresh basil</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 DreamStay Hotel. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
