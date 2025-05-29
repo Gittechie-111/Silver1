@@ -2,18 +2,20 @@
 document.getElementById('booking-form').addEventListener('submit', function(e) {
   e.preventDefault();
 
-  const name = this.name.value.trim();
-  const email = this.email.value.trim();
-  const checkin = this.checkin.value;
-  const checkout = this.checkout.value;
-  const roomType = this.roomType.value;
+  const formData = {
+    name: this.name.value.trim(),
+    email: this.email.value.trim(),
+    checkin: this.checkin.value,
+    checkout: this.checkout.value,
+    roomType: this.roomType.value
+  };
 
-  if (new Date(checkout) <= new Date(checkin)) {
-    showMessage('booking-message', 'Check-out date must be after check-in date.', true);
+  if (new Date(formData.checkout) <= new Date(formData.checkin)) {
+    showMessage('booking-message', '❌ Check-out date must be after check-in date.', true);
     return;
   }
 
-  showMessage('booking-message', `Thank you, ${name}! Your ${roomType} room is booked from ${checkin} to ${checkout}.`);
+  showMessage('booking-message', '✅ Thank you, ${formData.name}! Your ${formData.roomType} room is booked from ${formData.checkin} to ${formData.checkout}.');
   this.reset();
 });
 
@@ -21,16 +23,18 @@ document.getElementById('booking-form').addEventListener('submit', function(e) {
 document.getElementById('food-form').addEventListener('submit', function(e) {
   e.preventDefault();
 
-  const name = this.name.value.trim();
-  const roomNumber = this.roomNumber.value;
-  const foodItems = Array.from(this.foodItems.selectedOptions).map(opt => opt.value);
+  const formData = {
+    name: this.name.value.trim(),
+    roomNumber: this.roomNumber.value,
+    foodItems: Array.from(this.foodItems.selectedOptions).map(opt => opt.text)
+  };
 
-  if (foodItems.length === 0) {
-    showMessage('food-message', 'Please select at least one food item.', true);
+  if (formData.foodItems.length === 0) {
+    showMessage('food-message', '❌ Please select at least one food item.', true);
     return;
   }
 
-  showMessage('food-message', `Thank you, ${name}! Your food order for room ${roomNumber} has been placed: ${foodItems.join(', ')}.`);
+  showMessage('food-message', '✅ Thank you, ${formData.name}! Order for room ${formData.roomNumber} confirmed: ${formData.foodItems.join(', ')}.');
   this.reset();
 });
 
@@ -39,87 +43,49 @@ function showMessage(id, msg, isError = false) {
   const el = document.getElementById(id);
   el.textContent = msg;
   el.style.color = isError ? '#e74c3c' : '#27ae60';
-  setTimeout(() => {
-    el.textContent = '';
-  }, 5000);
+  el.style.fontWeight = '600';
+  setTimeout(() => el.textContent = '', 5000);
 }
 
-// --- Food Gallery Filtering ---
-const filterButtons = document.querySelectorAll('.filter-buttons button');
-const foodItems = document.querySelectorAll('.food-item');
-
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    const filter = button.getAttribute('data-filter');
-
-    foodItems.forEach(item => {
-      if (filter === 'all' || item.classList.contains(filter)) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-});
-
-// --- Lightbox Modal ---
+// --- Lightbox Functionality ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.querySelector('.lightbox-img');
 const lightboxTitle = document.getElementById('lightbox-title');
 const lightboxDesc = document.getElementById('lightbox-desc');
 const closeBtn = document.querySelector('.close');
 
-foodItems.forEach(item => {
+// Food gallery items click handler
+document.querySelectorAll('.food-item').forEach(item => {
   item.addEventListener('click', () => {
-    const bg = item.style.backgroundImage;
-    const url = bg.slice(5, -2);
-
-    lightboxImg.src = url;
-    lightboxImg.alt = item.getAttribute('data-title');
-    lightboxTitle.textContent = item.getAttribute('data-title');
-    lightboxDesc.textContent = item.getAttribute('data-desc');
-
-    lightbox.style.display = 'block';
+    const bgImage = item.style.backgroundImage;
+    lightboxImg.src = bgImage.slice(5, -2); // Extract URL from background-image
+    lightboxTitle.textContent = item.dataset.title;
+    lightboxDesc.textContent = item.dataset.desc;
+    lightbox.classList.add('active');
   });
 });
 
-closeBtn.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-
+// Close lightbox handlers
+closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
 lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none';
-  }
+  if (e.target === lightbox) lightbox.classList.remove('active');
 });
 
-// --- Smooth Fade-in Animation ---
-const fadeIns = document.querySelectorAll('.fade-in');
-
-const observer = new IntersectionObserver(entries => {
+// --- Intersection Observer for fade-in animations ---
+const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.25 });
 
-fadeIns.forEach(element => {
-  observer.observe(element);
-});
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
-// --- Button Hover Effect (Adding a Dynamic Glow) ---
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach(button => {
-  button.addEventListener('mouseenter', () => {
-    button.classList.add('glow');
-  });
-
-  button.addEventListener('mouseleave', () => {
-    button.classList.remove('glow');
-  });
+// --- Escape key to close lightbox ---
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    lightbox.classList.remove('active');
+  }
 });
