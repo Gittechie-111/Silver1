@@ -1,3 +1,54 @@
+// --- Lightbox Elements ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxDesc = document.getElementById('lightbox-desc');
+const closeBtn = document.querySelector('.close');
+
+// --- Open lightbox on clicking any food-item or gallery-item ---
+document.querySelectorAll('.food-item, .gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    // Get background-image URL
+    let bgImage = item.style.backgroundImage;
+    if (!bgImage) return;
+    // Extract URL from background-image: url("...")
+    const imageUrl = bgImage.slice(5, -2);
+    lightboxImg.src = imageUrl;
+
+    // For food-item, show title and desc; for gallery-item, set generic title
+    if (item.classList.contains('food-item')) {
+      lightboxTitle.textContent = item.dataset.title || '';
+      lightboxDesc.textContent = item.dataset.desc || '';
+    } else {
+      lightboxTitle.textContent = 'Hotel Image';
+      lightboxDesc.textContent = '';
+    }
+
+    lightbox.classList.add('active');
+  });
+});
+
+// --- Close lightbox handlers ---
+closeBtn.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  lightboxImg.src = '';
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+  }
+});
+
+// --- Escape key to close lightbox ---
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+  }
+});
+
 // --- Booking Form Submission ---
 document.getElementById('booking-form').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -58,30 +109,6 @@ function showMessage(id, msg, isError = false) {
   setTimeout(() => el.textContent = '', 5000);
 }
 
-// --- Lightbox Functionality ---
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.querySelector('.lightbox-img');
-const lightboxTitle = document.getElementById('lightbox-title');
-const lightboxDesc = document.getElementById('lightbox-desc');
-const closeBtn = document.querySelector('.close');
-
-// Food gallery items click handler
-document.querySelectorAll('.food-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const bgImage = item.style.backgroundImage;
-    lightboxImg.src = bgImage.slice(5, -2); // Extract URL from background-image
-    lightboxTitle.textContent = item.dataset.title;
-    lightboxDesc.textContent = item.dataset.desc;
-    lightbox.classList.add('active');
-  });
-});
-
-// Close lightbox handlers
-closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) lightbox.classList.remove('active');
-});
-
 // --- Intersection Observer for fade-in animations ---
 const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -93,10 +120,3 @@ const fadeObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.25 });
 
 document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
-
-// --- Escape key to close lightbox ---
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-    lightbox.classList.remove('active');
-  }
-});

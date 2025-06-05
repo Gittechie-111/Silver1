@@ -233,7 +233,7 @@ select:invalid:focus {
   color: #afddc2;
 }
 
-/* Food Gallery */
+/* Food & Dessert Galleries */
 .food-gallery-section {
   margin-bottom: 50px;
   text-align: center;
@@ -268,6 +268,17 @@ select:invalid:focus {
   transform: scale(1.05) translateY(-10px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   outline: none;
+}
+
+/* Dessert specific styling */
+.food-item.dessert {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: multiply;
+}
+
+.food-item.dessert:hover,
+.food-item.dessert:focus {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 /* Food info overlay */
