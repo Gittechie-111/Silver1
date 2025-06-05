@@ -131,6 +131,15 @@ nav a:focus {
   margin-bottom: 20px;
 }
 
+/* Clear call-to-action text */
+.cta-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #16a085;
+  text-align: center;
+}
+
 /* Forms */
 form {
   max-width: 100%;
@@ -357,6 +366,39 @@ footer {
   margin-top: 50px;
   color: #95a5a6;
   font-size: 0.9rem;
+}
+
+/* Social Media Links */
+.social-media {
+  margin: 20px 0 10px;
+  text-align: center;
+  color: #2980b9;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.social-media p {
+  margin-bottom: 8px;
+}
+
+.social-media a {
+  margin: 0 10px;
+  color: #2980b9;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.social-media a:hover,
+.social-media a:focus {
+  color: #1abc9c;
+  outline: none;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  fill: currentColor;
 }
 
 /* Responsive */

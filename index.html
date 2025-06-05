@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DreamStay Hotel</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -33,12 +33,13 @@
   <div class="booking-food-container">
     <section id="booking" class="booking-section fade-in">
       <h2>Room Reservation</h2>
+      <p class="cta-text">Reserve your perfect room today!</p>
       <form id="booking-form">
-        <label>Name: <input type="text" name="name" required></label>
-        <label>Email: <input type="email" name="email" required></label>
-        <label>Check-in Date: <input type="date" name="checkin" required></label>
-        <label>Check-out Date: <input type="date" name="checkout" required></label>
-        <label>Room Type: 
+        <label>Name: <input type="text" name="name" required /></label>
+        <label>Email: <input type="email" name="email" required /></label>
+        <label>Check-in Date: <input type="date" name="checkin" required /></label>
+        <label>Check-out Date: <input type="date" name="checkout" required /></label>
+        <label>Room Type:
           <select name="roomType" required>
             <option value="">Select</option>
             <option value="single">Single</option>
@@ -53,10 +54,11 @@
 
     <section id="food" class="food-section fade-in">
       <h2>Food Order</h2>
+      <p class="cta-text">Order delicious meals delivered to your room!</p>
       <form id="food-form">
-        <label>Name: <input type="text" name="name" required></label>
-        <label>Room Number: <input type="number" name="roomNumber" min="1" required></label>
-        <label>Select Food Items: 
+        <label>Name: <input type="text" name="name" required /></label>
+        <label>Room Number: <input type="number" name="roomNumber" min="1" required /></label>
+        <label>Select Food Items:
           <select name="foodItems" multiple required>
             <option value="burger">Burger</option>
             <option value="pizza">Pizza</option>
@@ -75,21 +77,19 @@
   <section id="food-gallery" class="food-gallery-section fade-in">
     <h2>Our Delicious Food</h2>
     <div class="food-gallery">
-      <div class="food-item burger" style="background-image: url('https://picsum.photos/id/292/300/200')" data-title="Cheeseburger" 
-      data-desc="Juicy grilled burger with cheese">
+      <div class="food-item burger" style="background-image: url('https://picsum.photos/id/292/300/200')" data-title="Cheeseburger" data-desc="Juicy grilled burger with cheese">
         <div class="food-info">
           <h3>Cheeseburger</h3>
           <p>Juicy grilled burger with cheese</p>
         </div>
       </div>
-      <div class="food-item pizza" style="background-image: url('https://picsum.photos/id/1080/300/200')" data-title="Margherita Pizza"
-       data-desc="Classic pizza with fresh basil">
+      <div class="food-item pizza" style="background-image: url('https://picsum.photos/id/1080/300/200')" data-title="Margherita Pizza" data-desc="Classic pizza with fresh basil">
         <div class="food-info">
           <h3>Margherita Pizza</h3>
           <p>Classic pizza with fresh basil</p>
         </div>
       </div>
-       <div class="food-item salad" style="background-image: url('https://picsum.photos/id/292/300/200')" data-title="Caesar Salad" data-desc="Crisp romaine with creamy dressing">
+      <div class="food-item salad" style="background-image: url('https://picsum.photos/id/292/300/200')" data-title="Caesar Salad" data-desc="Crisp romaine with creamy dressing">
         <div class="food-info">
           <h3>Caesar Salad</h3>
           <p>Crisp romaine with creamy dressing</p>
@@ -102,21 +102,42 @@
         </div>
       </div>
     </div>
-
-    </div>
   </section>
 
   <!-- Lightbox for Food Gallery -->
   <div id="lightbox" class="lightbox">
     <div class="lightbox-content">
-      <img class="lightbox-img" src="" alt="">
+      <img class="lightbox-img" src="" alt="" />
       <h3 id="lightbox-title"></h3>
       <p id="lightbox-desc"></p>
-      <button class="close">&times;</button>
+      <button class="close" aria-label="Close lightbox">&times;</button>
     </div>
   </div>
 
   <footer>
+    <div class="social-media">
+      <p>Connect with us:</p>
+      <a href="mailto:contact@dreamstayhotel.com" aria-label="Email us">
+        <svg class="icon email-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M2 6v12h20V6H2zm18 2.5-8 5-8-5V8l8 5 8-5v.5z" />
+        </svg>
+      </a>
+      <a href="https://facebook.com/dreamstayhotel" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg class="icon facebook-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M22 12a10 10 0 1 0-11.5 9.87v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-1.5c-.5 0-1 .5-1 1v2h3l-.5 3h-2.5v7A10 10 0 0 0 22 12z" />
+        </svg>
+      </a>
+      <a href="https://twitter.com/dreamstayhotel" target="_blank" rel="noopener" aria-label="Twitter">
+        <svg class="icon twitter-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.15 12.15 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.32 5.71 4.26 4.26 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.44 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.84A8.72 8.72 0 0 1 2 18.13a12.14 12.14 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.37-.01-.56A8.7 8.7 0 0 0 22.46 6z" />
+        </svg>
+      </a>
+      <a href="https://instagram.com/dreamstayhotel" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg class="icon instagram-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm10 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+        </svg>
+      </a>
+    </div>
     <p>© 2025 DreamStay Hotel. All rights reserved.</p>
   </footer>
 
